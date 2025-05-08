@@ -54,7 +54,6 @@ Fraudulent transactions result in significant financial losses and pose a reputa
 * Incorporate feedback from fraud analysts to refine model features.
 * Explore advanced algorithms such as neural networks for potential performance gains.
 
-For more information and access to the model, please visit the [GitHub Repository](https://github.com/username/fraud-detection-model).
 ---
 
 # Modeling Pipeline Case Assignment
