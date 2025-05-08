@@ -33,15 +33,15 @@ Fraudulent transactions result in significant financial losses and pose a reputa
 
    * Logistic Regression and XGBoost models were employed using each preprocessing recipe (a total of 6 workflows).
 
-3. **Model Evaluation:**
+3. **Model Evaluation Metrics:**
 
-   * Accuracy, Precision, Recall, F1 Score, AUC-ROC.
+   * Recall, ROC-AUC, and Precision. By balancing recall and precision, the business can minimize financial loss while avoiding customers' inconvenience that would accompany false positives.
 
 ## Results and Findings
 
-* The XGBoost model achieved an accuracy of **97%**[verify number], a recall of **92%**[verify number], and an AUC-ROC of **0.98**[verify number].
-* Summary here like "High precision and recall indicate the model's effectiveness in minimizing false positives and false negatives."
-* Summary here like "The model demonstrated robust performance on unseen data, validating its generalizability."
+* The XGBoost model achieved a recall rate of **96%**, a ROC-AUC of **97%**, and a precision of **73%**.
+* High precision and recall indicate the model's effectiveness in minimizing false positives and false negatives.
+* The model demonstrated robust performance on unseen data, validating its generalizability.
 
 ## Recommendations
 
