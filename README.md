@@ -31,7 +31,7 @@ Fraudulent transactions result in significant financial losses and pose a reputa
 
 2. **Model Selection:**
 
-   * Logistic Regression and XGBoost models were employed using each preprocessing recipe.
+   * Logistic Regression and XGBoost models were employed using each preprocessing recipe (a total of 6 workflows).
 
 3. **Model Evaluation:**
 
