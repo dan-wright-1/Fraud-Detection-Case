@@ -2,31 +2,36 @@
 
 ## Introduction
 
-The objective of this project was to develop a machine learning model to detect fraudulent transactions effectively. The model leverages historical transaction data to identify patterns and anomalies that are indicative of fraudulent activities.
+Welcome to my fraud detection project! In my intro data science course, we used R to clean data and build a machine learning model to predict a response variable. This particular model leverages historical transaction data to identify patterns and anomalies indicative of fraudulent activities.
 
 ## Problem Statement
 
-Fraudulent transactions result in significant financial losses and pose a reputational risk to organizations. This project aims to build a model that can accurately classify transactions as legitimate or fraudulent, thus mitigating potential losses and enhancing fraud prevention strategies.
+Fraudulent transactions result in significant financial losses and pose a reputational risk to organizations. In this project, I aimed to build a model that can accurately classify transactions as legitimate or fraudulent, thus mitigating potential losses and enhancing fraud prevention strategies.
 
 ## Data Overview
 
-* **Dataset:** Historical transaction data with labeled instances of fraudulent and legitimate transactions. Found here: https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
-* **Features:** Transaction amount, transaction type, timestamp, location, and user demographics.
-* **Size:** 1 million transactions with 3% labeled as fraudulent.
+* **Dataset:** Historical transaction data with labeled instances of fraudulent and legitimate transactions. The dataset is highly unbalanced, as per usual with transaction data. The positive class (fraud) accounts for 0.172% of all transactions. See the dataset on Kaggle here: https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud.
+* **Features:** Transaction amount, timestamp, and 28 other PCA-transformed features of unknown column names due to privacy restrictions.
+* **Label:** Fraud represented by 1 and normal transaction represented by 0. 
+* **Size:** 284,807 transactions with 492 labeled as fraudulent.
 
 ## Methodology
 
 1. **Data Preprocessing:**
 
-   * Data Cleaning: Removed null values and outliers.
-   * Feature Engineering: Created new features to capture transactional behavior.
+   * Data Cleaning: The data was clean upon download from Kaggle.
+   * Normalization & Downsampling: Various preprocessing techniques and model architectures are used to compare performance.
+   * Feature Engineering: All available features were used in this model because this was the first iteration. Further investigation may surface features that worsen model performance, which would be candidates for removal. 
    * Data Splitting: 70% training, 30% testing.
+  
+   * Three different preprocessing recipes were used:
+     * Recipe 1: Baseline with no transformations.
+     * Recipe 2: Yeo-Johnson transformation, normalization, and downsampling.
+     * Recipe 3: Range scaling, Box-Cox transformation, normalization, and upsampling.
 
 2. **Model Selection:**
 
-   * Logistic Regression
-   * Random Forest
-   * XGBoost (Selected Model)
+   * Logistic Regression and XGBoost models were employed using each preprocessing recipe.
 
 3. **Model Evaluation:**
 
@@ -34,13 +39,13 @@ Fraudulent transactions result in significant financial losses and pose a reputa
 
 4. **Deployment:**
 
-   * Model deployed using a REST API for integration with transaction monitoring systems.
+   * Model was not deployed. A REST API is recommended for integration with transaction monitoring systems.
 
 ## Results and Findings
 
-* The XGBoost model achieved an accuracy of **97%**, a recall of **92%**, and an AUC-ROC of **0.98**.
-* High precision and recall indicate the model's effectiveness in minimizing false positives and false negatives.
-* The model demonstrated robust performance on unseen data, validating its generalizability.
+* The XGBoost model achieved an accuracy of **97%**[verify number], a recall of **92%**[verify number], and an AUC-ROC of **0.98**[verify number].
+* Summary here like "High precision and recall indicate the model's effectiveness in minimizing false positives and false negatives."
+* Summary here like "The model demonstrated robust performance on unseen data, validating its generalizability."
 
 ## Recommendations
 
@@ -64,7 +69,7 @@ If you thought the _last_ modeling pipeline assignment was fun, well, you're in 
 
 ### 1. fraud, fraud_split, fraud_training, fraud_testing
 
-The first dataset you'll be using is a fraud dataset that comes from real-world fraud data. Like most fraud datasets, the outcome you'll be classifying is extremely imbalanced (meaning that there are very few fraud cases relative to the rest of the population). This will give us a good opportunity to learn about a few strategies for dealing with imbalanced data. You'll be predicting `is_fraud` using a handful of other predictors, most of which have already been cleaned and transformed and have very uncreative names (`v1` through `v28`). 
+The first dataset you'll be using is a fraud dataset that comes from real-world fraud data. Like most fraud datasets, the outcome you'll be classifying is extremely imbalanced (meaning that there are very few fraud cases relative to the rest of the population). This gave me a good opportunity to learn about a few strategies for dealing with imbalanced data. You'll be predicting `is_fraud` using a handful of other predictors, most of which have already been cleaned and transformed and have very uncreative names (`v1` through `v28`). 
 
 Start by converting the `is_fraud` column to a factor, saving the result to `fraud`. Then use that `fraud` tibble to create a `fraud_split` object, followed by the corresponding `fraud_training` and `fraud_testing` tibbles. (Just make sure your code for this section comes _after_ the `set.seed(42)` I provided.)
 
@@ -195,136 +200,3 @@ Alrighty! Let's compare these 6 different models to see which combination produc
 Have a look at the contents of `fraud_perf_summary`. What patterns do you see across the various recipe strategies and model algorithms? Which algorithm tends to be the best? Keeping in mind that the primary difference between the first recipe and the other two was the downsampling/upsampling strategy used (see `plot_1`), notice what effect that had on the performance metrics, especially specificity. See how much worse specificity was when the training data was left extremely imbalanced? 
 
 Pretty cool, right? I think so, too.
-
-> [!IMPORTANT] 
-> After accomplishing the above, you should now have the `fraud_perf_summary` object in your environment.
-
----
-
-### 7. air, air_split, air_training, air_testing
-
-On to the next dataset! This one summarizes passengers' reported satisfaction with their experience during a flight. The target variable is `satisfied`, a binary indicator of whether they were satisfied or not. The other columns are all features related to the flight and/or the passenger. 
-
-Start by converting the target variable (saving the data as `air`), then creating the train/test split and deriving both the training and testing tibbles. You can name each of those `air_split`, `air_training`, and `air_testing`, respectively.
-
-> [!IMPORTANT] 
-> After accomplishing the above, you should now have `air`, `air_split`, `air_training`, and `air_testing` objects in your environment.
-
----
-
-### 8. air_rec_corr, air_rec_pca, peek_4, peek_5
-
-We're going to do another comparison of different data preprocessing setups with different recipe configurations. Specifically, you'll create two different recipes that are identical except for the last step. Both recipes will have the following: 
-- median imputation for all numeric features
-- Yeo Johnson transformations for all numeric features
-- standardization (z-score conversion) for all numeric features
-- dummy coding for the category features
-- a near zero variance filter to remove features that have very little variance 
-
-Again, both recipes should have the steps above. Then, as the last step on each recipe, you'll add two different approaches for dimension reduction. The first recipe (saved as `air_rec_corr`) will use a correlation-based filter (with default threshold) while the second recipe (saved as `air_rec_pca`) will use a principal components analysis to reduce the many columns down to several principal components. 
-
-Then we'll use workflows again to pair these two different recipes with two algorithms to explore which dimension reduction approach provides better performance with this data. Before we do that, however, let's use the `prep()` and `bake()` method that we used above to save two more peeks of the transformed training data, just so you can see how different the two recipes are. Save the results of baking the `air_rec_corr` and `air_rec_pca` recipes to `peek_4` and `peek_5`, respectively. Notice that the two dimension reduction approaches produce _very_ different end results. (And we won't do anything else with those "peek" tibbles.)
-
-> [!IMPORTANT] 
-> After accomplishing the above, you should now have `air_rec_corr`, `air_rec_pca`, `peek_4`, and `peek_5` objects in your environment.
-
----
-
-### 9. air_lr_corr_wkfl, air_lr_pca_wkfl, air_xgb_corr_wkfl, air_xgb_pca_wkfl
-
-Next, let's set ourselves up to compare the recipes across the logistic regression and xgboost algorithms. (Note that the `lr_spec` and `xgb_spec` objects we created for the last dataset can be reused here.) Using both recipes and both model specifications, create four workflows named `air_lr_corr_wkfl`, `air_lr_pca_wkfl`, `air_xgb_corr_wkfl`, and `air_xgb_pca_wkfl`, corresponding to the algorithm and recipe combinations suggested by their names. 
-
-> [!IMPORTANT] 
-> After accomplishing the above, you should now have `air_lr_corr_wkfl`, `air_lr_pca_wkfl`, `air_xgb_corr_wkfl`, and `air_xgb_pca_wkfl` objects in your environment.
-
----
-
-### 10. air_folds, air_lr_corr_cv_fit, air_lr_pca_cv_fit, air_xgb_corr_cv_fit, air_xgb_pca_cv_fit
-
-Now let's do a robust evaluation of each of the four workflows in terms of how they compare on the standard classification performance metrics (meaning that you don't need to make a custom set of metrics like we did for the previous dataset). Setup a 10-fold cross-validation (saved to `air_folds`) with the default of 1 repeat, then use that folds object to obtain cross-validated modeling results for each of the four workflows, saving the results to `air_lr_corr_cv_fit`, `air_lr_pca_cv_fit`, `air_xgb_corr_cv_fit`, and `air_xgb_pca_cv_fit`. 
-
-> [!IMPORTANT] 
-> After accomplishing the above, you should now have `air_folds`, `air_lr_corr_cv_fit`, `air_lr_pca_cv_fit`, `air_xgb_corr_cv_fit`, and `air_xgb_pca_cv_fit` objects in your environment.
-
----
-
-### 11. air_perf_summary, air_final_fit, plot_3 
-
-Next, construct a summary tibble that displays the minimum, average, maximum, and standard deviation of the `roc_auc` metric. This will give you a slightly more complete picture of the consistency of performance across the 10 folds for each workflow. Again, mutate a column (this time called `workflow`) that tags each of the results with a label designating the workflow used to generate the result. Save the resulting tibble to `air_perf_summary`.
-
-> [!TIP]
-> There is a parameter option in `collect_metrics()` that will allow you to extract detailed performance metrics for each of the many models that are run during a cross-validated fit rather than the summarized set of metrics. You can then do some binding, grouping, and summarizing to get the results that you're looking for. Below is a preview of one of the rows in my `air_perf_summary` tibble (though don't be too concerned if your numbers don't match exactly):
-> ```
->   workflow          minimum  mean maximum      sd
->   <chr>               <dbl> <dbl>   <dbl>   <dbl>
-> 1 air_lr_corr_wkfl    0.924 0.928   0.931 0.00278 
-> ```
-
-Given the results, there appears to be a pretty clear winner in terms of both performance and consistency. Use that workflow and the `last_fit()` function to obtain the finalized model object (saved to `air_final_fit`). Just to show that we can, let's go ahead and create a ROC Curve plot using the predictions from that model. Extract the predictions from `air_final_fit`, then use the ROC curve functions we used in class to create a nice-and-curvy ROC curve plot. Add an appropriate title similar to the one you see in the example plot below, then save the plot as `plot_3`.
-
-> [!TIP]
-> The `autoplot()` function we learned to use in class is a convenience function that takes care of a bunch of `ggplot` magic without you having to do it manually. But the function returns a ggplot plot just like any other plot you've made, which means you can use standard ggplot helper functions like `labs()` to add additional customization layers.
-
-<img src="plots/plot_3.png"  width="80%">
-
-> [!IMPORTANT] 
-> After accomplishing the above, you should now have `air_perf_summary`, `air_final_fit`, and `plot_3` objects in your environment.
-
----
-
-### 12. lc_*
-
-Okay. Final dataset and model. This data comes from the lending activities of Lending Club (a fintech lender I worked with at Neuro-ID), and each row in the dataset represents a loan that was issued during the year 2019. The target variable is `loan_default`, and your job is to build and then tune a model that helps predict whether a loan is going to be repaid or not.
-
-On purpose, I'm not going to be very prescriptive on this last exercise. You should be less concerned about whether you've set up or tuned your model exactly the same way as I have. I'm more interested in you thinking through the modeling pipeline process and using what we've learned in class to get to a model that is ready to deploy.
-
-Below, I'll list each of the objects that I ended up with after building and tuning this loan default model. First, though, here are a few things to keep in mind:
-
-- We're going to be running a lot of models during the tuning process, so to speed things up we are going to use xgboost and very little pre-processing in terms of recipe steps. (Xgboost is actually very robust in terms of data shape, missingness, etc., so we don't have to worry as much about getting the data perfect for the model; either way, removing a bunch of processing will save you some time during the grid search, so that's what we'll be doing.) So when you build your recipe, I would suggest that you add just one pre-processing step: `step_dummy(all_nominal_predictors())`.
-- I'm setting my seed each time I (a) do a random assignment (e.g., `initial_split()` or `vfold_cv()`), (b) run any xgboost fit procedure, or (c) when I generate my tuning grid. (Again, I'm not going to be too worried about whether your model results are the same, so it won't matter as much for this exercise.) Just letting you know the thought process behind how I usually setup my seeds that create repeatability in my workflow.
-- It's usually a good idea to do an initial, cross-validated model with the "default" xgboost parameters, and then add a "tunable" model spec that you use for tuning and comparison. You'll see in the list below that I've taken this approach.
-- The full tuning process can take a while, and you don't want to be waiting around for your code to run (especially if you're working on this at the last minute). I would suggest keeping your search grid to 10 or fewer (even though that's smaller than what we would usually do out in the wild). 
-- You can also speed the tuning up considerably if you do the grid search in parallel on multiple processor cores. There is a wonderfully usable way to do this in the form of a package: `doParallel`. After installing the package, you can initiate a parallel process by calling `doParallel::registerDoParallel()` before you do your `tune_grid()` operation. This works a bit more smoothly on Mac/Linux machines than on Windows machines, but either way I'd recommend playing around with it a bit (and monitoring your processor consumption while it's running) because it's somehow just _fulfilling_ to see your machine firing on all cylinders. (And if you don't want to mess with this, you don't need to; it'll just mean more waiting while your computer runs through the grid search sequentially. Obviously you can reach out on Slack if you have questions about this.)
-- The xgboost algorithm has a lot of tunable settings. If you want some background reading on what the various settings do, you can read about them [here](https://www.kaggle.com/code/prashant111/a-guide-on-xgboost-hyperparameters-tuning/notebook). Just try not to read through the parameter descriptions shortly before going to bed, because they are **so** exciting that you'll probably get all worked up and then not be able to sleep.
-- Within the `tidymodels` implementation of the xgboost algorithm, you can see the main parameters available for tuning in the documentation for the `boost_tree()` function. I would avoid tuning the `mtry` or `trees` parameters. Tuning the `trees` parameter in particular will increase your processing time _significantly_, so if you're short on time you should **definitely** leave that one out. (More trees will likely get you better performance, but I wouldn't use more than about 300-500 trees regardless.)
-
-Okay. With the above in mind, here's a list of the objects that I used to build out my model pipeline, and I'm listing them in the order that I added them to help guide you a bit:
-
-- `lc_split`: the initial 75/25 split object
-- `lc_training`: the training data
-- `lc_testing`: the testing data
-- `lc_rec`: the (single-step) recipe
-- `xgb_spec_default`: xgboost model spec with default parameters
-- `lc_xgb_wkfl`: workflow comprised of `lc_rec` and `xgb_spec_default`
-- `lc_folds`: the 10-fold cross-validation object (no repeats to save time)
-- `lc_default_fit`: the fit of the 10-fold cross-validation using the default workflow
-- `xgb_spec_tuning`: a different xgboost model spec with tunable parameters
-- `lc_xgb_tune_wkfl`: a different workflow that bundles `lc_rec` and `xgb_spec_tuning`
-- `lc_grid`: the tuning grid (again, I would keep this sized to 10 or so unless you have lots of breathing room). You can use `grid_random()` to generate this, but there are others out there as well.
-- `tune_fit`: The result of the grid search (i.e., `tune_grid()`)
-- `best_parameters`: the best-performing parameter set from your grid search
-- `final_lc_wkfl`: a final modeling workflow, derived from applying those `best_parameters` to the `lc_xgb_tune_wkfl` workflow.
-- `lc_final_fit`: The end result, a deployable model object that results from finalizing the `final_lc_wkfl` with the `lc_split` object.
-
-> [!IMPORTANT] 
-> After accomplishing the above, you should now have _all of the objects listed above_ in your environment. (I'm not going to list them again here...)
-
-#### 🚨 Model Tuning Competition 🚨
-
-If you are having fun with this and want to see how high you can get your model's performance, then go for it. I will gladly reward the top 3 students whose model performance is the highest in the class. The reward is your choice of either (a) extra credit (boring) or (b) I'll take you and a friend/spouse surfing on my boat sometime this coming summer. Performance will be measured in terms of `roc_auc`, and I'll maintain a pseudonymous "leaderboard" of the top AUCs that have been achieved and share those on Slack periodically until the assignment deadline. 
-
-Any strategy is fair game, as long as you use the provided data and demonstrate your performance on the random 25% holdout test set produced from the `initial_split()` function immediately following a `set.seed(42)` command, and use the `tidymodels` suite to build your model. 
-
-To submit your `roc_auc` for the competition, simply fill out [this form](https://byu.az1.qualtrics.com/jfe/form/SV_3wtj8UGH37OSDAO). (You can resubmit that form as many times as you'd like, so feel free to submit your starting point and then keep tweaking and exploring.) 
-
-Good luck!
-
----
-
-# Final Cleanup and Submission
-
-Please do the following to make sure your code runs without errors and passes the submission checks:
-
-1. Run the "Pre-Submission Checks" section to check whether you saved (and spelled) all of the expected variables and columns along the way. Take care of any issues it uncovers.
-2. Restart your R session (Session >> Restart R).
-3. Run your entire script from the beginning, watching for any errors along the way. Easiest way to do this is to "Select All" and then hit "Run". If you have any errors (including in the Pre-Submission Checks section), you'll want to fix them before submitting.
