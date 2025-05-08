@@ -10,7 +10,7 @@ Fraudulent transactions result in significant financial losses and pose a reputa
 
 ## Data Overview
 
-* **Dataset:** Historical transaction data with labeled instances of fraudulent and legitimate transactions.
+* **Dataset:** Historical transaction data with labeled instances of fraudulent and legitimate transactions. Found here: https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
 * **Features:** Transaction amount, transaction type, timestamp, location, and user demographics.
 * **Size:** 1 million transactions with 3% labeled as fraudulent.
 
