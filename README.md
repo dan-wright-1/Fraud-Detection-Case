@@ -74,7 +74,7 @@ Converted the `is_fraud` column to a factor, saving the result to `fraud`. Then 
 
 Created three recipes to compare different approaches to handling imbalanced data. The first recipe (`fraud_rec_1`) was a basic recipe with no recipe steps added. The second recipe (`fraud_rec_2`) addressed the right-skewed shape of the `amount` column using a YeoJohnson transformation, followed by scaling using a z-score, and applied the `step_downsample()` step with its default parameters. The third recipe (`fraud_rec_3`) addressed the right-skewed shape of the `amount` column using a BoxCox transformation, followed by scaling using a z-score, and applied the `step_upsample()` step with its default parameters. A `step_mutate()` or `step_range()` step was added to ensure the BoxCox transformation could handle the zero values in the `amount` column.
 
-### 3. 📦 Data Transformation and Visualization
+### 3. 🧮 Data Transformation and Visualization
 
 Applied the recipes to the training data using the `prep()` and `bake()` functions, saving the results to `peek_1`, `peek_2`, and `peek_3`. A `recipe` column was added to each tibble to indicate the source recipe (`fraud_rec_1`, `fraud_rec_2`, or `fraud_rec_3`). Created two visualizations to assess the impact of the transformations. The first plot (`plot_1`) illustrates the differences in class distributions due to downsampling and upsampling. The second plot (`plot_2`) demonstrates the effects of YeoJohnson and BoxCox transformations on the right-skewed `amount` column.
 
