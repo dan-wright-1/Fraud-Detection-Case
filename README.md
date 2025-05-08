@@ -1,6 +1,6 @@
 # Modeling Pipeline Case - Fraud Detection
 
-## 🌐 Introduction
+## 🔥 Introduction
 
 Welcome to my fraud detection project! In my intro data science course, we used R to clean data and build a machine learning model to predict a response variable. This particular model leverages historical transaction data to identify patterns and anomalies indicative of fraudulent activities.
 
