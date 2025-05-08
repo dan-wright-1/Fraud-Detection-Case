@@ -15,9 +15,9 @@ Fraudulent transactions result in significant financial losses and pose a reputa
 * **Label:** Fraud represented by 1 and normal transaction represented by 0. 
 * **Size:** 284,807 transactions with 492 labeled as fraudulent.
 
-## Methodology
+## 📋 Methodology
 
-1. 🔄 **Data Preprocessing:**
+1. **Data Preprocessing:**
 
    * Data Cleaning: The data was clean upon download from Kaggle.
    * Normalization & Downsampling: Various preprocessing techniques and model architectures are used to compare performance.
@@ -29,11 +29,11 @@ Fraudulent transactions result in significant financial losses and pose a reputa
      * Recipe 2: Yeo-Johnson transformation, normalization, and downsampling.
      * Recipe 3: Range scaling, Box-Cox transformation, normalization, and upsampling.
 
-2. 🔍 **Model Selection:**
+2. **Model Selection:**
 
    * Logistic Regression and XGBoost models were employed using each preprocessing recipe (a total of 6 workflows).
 
-3. 📋 **Model Evaluation Metrics:**
+3. **Model Evaluation Metrics:**
 
    * Recall, ROC-AUC, and Precision. By balancing recall and precision, the business can minimize financial loss while avoiding customers' inconvenience that would accompany false positives. To catch more fraud, optimize for recall. To avoid customer friction with false-positive security checks, optimize for precision.
 
