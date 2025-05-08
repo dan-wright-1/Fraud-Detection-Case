@@ -37,10 +37,6 @@ Fraudulent transactions result in significant financial losses and pose a reputa
 
    * Accuracy, Precision, Recall, F1 Score, AUC-ROC.
 
-4. **Deployment:**
-
-   * Model was not deployed. A REST API is recommended for integration with transaction monitoring systems.
-
 ## Results and Findings
 
 * The XGBoost model achieved an accuracy of **97%**[verify number], a recall of **92%**[verify number], and an AUC-ROC of **0.98**[verify number].
