@@ -56,7 +56,7 @@ Fraudulent transactions result in significant financial losses and pose a reputa
 * Explore advanced algorithms such as neural networks for potential performance gains.
 
 ## ✅ Key Takeaways
-* Downsampling and upsampling are two strategies for dealing with extremely imbalanced data. ⚖
+* Downsampling and upsampling are two strategies for dealing with extremely imbalanced data.
 * Using multiple preprocessing recipes with multiple algorithms allows data scientists to experiment and compare model performance. 
 * Determining which metric to optimize for is context-dependent. 
 
