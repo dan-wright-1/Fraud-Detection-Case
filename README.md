@@ -59,15 +59,16 @@ Fraudulent transactions result in significant financial losses and pose a reputa
 * Incorporate feedback from fraud analysts to refine model features.
 * Explore advanced algorithms such as neural networks for potential performance gains.
 
-## Conclusion
-* Strategies for dealing with imbalanced data
-* 
+## Key Takeaways
+* Downsampling and upsampling are two strategies for dealing with extremely imbalanced data.
+* Using multiple preprocessing recipes with multiple algorithms allows data scientists to experiment and compare model performance.
+* Determining which metric to optimize for is context-dependent.
 
 ---
 
 # Modeling Pipeline
 
-Here's how the sausage was made!
+Here's how the sausage was made! 🌭
 
 ### 1. Training/Testing Split
 
