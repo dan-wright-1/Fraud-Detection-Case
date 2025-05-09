@@ -77,7 +77,11 @@ Created three recipes to compare different approaches to handling imbalanced dat
 
 ### 3. 🧮 Data Transformation and Visualization
 
-Applied the recipes to the training data using the `prep()` and `bake()` functions, saving the results to `peek_1`, `peek_2`, and `peek_3`. A `recipe` column was added to each tibble to indicate the source recipe (`fraud_rec_1`, `fraud_rec_2`, or `fraud_rec_3`). Created two visualizations to assess the impact of the transformations. The first plot (`plot_1`) illustrates the differences in class distributions due to downsampling and upsampling. The second plot (`plot_2`) demonstrates the effects of YeoJohnson and BoxCox transformations on the right-skewed `amount` column.
+Applied the recipes to the training data using the `prep()` and `bake()` functions, saving the results to `peek_1`, `peek_2`, and `peek_3`. A `recipe` column was added to each tibble to indicate the source recipe (`fraud_rec_1`, `fraud_rec_2`, or `fraud_rec_3`). Created two visualizations to assess the impact of the transformations. The first plot (`plot_1`) illustrates the differences in class distributions due to downsampling and upsampling. 
+![](plots/plot_1.png)
+The second plot (`plot_2`) demonstrates the effects of YeoJohnson and BoxCox transformations on the right-skewed `amount` column.
+![](plots/plot_2.png)
+
 
 ### 4. 🛠️ Model Specification and Workflow Creation
 
