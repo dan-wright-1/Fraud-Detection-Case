@@ -12,7 +12,7 @@ Fraudulent transactions result in significant financial losses and pose a reputa
 
 * **Dataset:** Historical transaction data with labeled instances of fraudulent and legitimate transactions. The dataset is highly unbalanced, as per usual when working with transaction data containing fraud. The positive class (fraud) accounts for 0.172% of all transactions. See the dataset on Kaggle here: https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud.
 * **Features:** Transaction amount, timestamp, and 28 other PCA-transformed features (v1-v28) of unknown column names due to privacy restrictions.
-* **Label:** Fraud represented by 1 and normal transaction represented by 0. 
+* **Label:** Fraud activities are represented by 1 and normal transactions are represented by 0. 
 * **Size:** 284,807 transactions with 492 labeled as fraudulent.
 
 ## 📋 Methodology
