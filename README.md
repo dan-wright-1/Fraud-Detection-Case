@@ -1,4 +1,4 @@
-# Modeling Pipeline Case - Fraud Detection
+# Fraud Detection Modeling Case
 
 ## 🔥 Introduction
 
@@ -20,8 +20,8 @@ Fraudulent transactions result in significant financial losses and pose a reputa
 1. **Data Preprocessing:**
 
    * Data Cleaning: The data was clean upon download from Kaggle.
-   * Normalization & Downsampling: Various preprocessing techniques and model architectures are used to compare performance.
-   * Feature Engineering: All available features were used in this model because this was the first iteration. Further investigation may surface features that worsen model performance, which would be candidates for removal. 
+   * Normalization & Downsampling: Various preprocessing techniques and model architectures were used to compare performance.
+   * Feature Engineering: This model used all available features because it was the first iteration. Further investigation may surface features that worsen model performance, which would be candidates for removal. 
    * Data Splitting: 70% training, 30% testing.
   
    * Three different preprocessing recipes were used:
@@ -31,11 +31,11 @@ Fraudulent transactions result in significant financial losses and pose a reputa
 
 2. **Model Selection:**
 
-   * Logistic Regression and XGBoost models were employed using each preprocessing recipe (a total of 6 workflows).
+   * Logistic Regression and XGBoost models were employed using each preprocessing recipe (6 workflows).
 
 3. **Model Evaluation Metrics:**
 
-   * Recall, ROC-AUC, and Precision. By balancing recall and precision, the business can minimize financial loss while avoiding customers' inconvenience that would accompany false positives. To catch more fraud, optimize for recall. To avoid customer friction with false-positive security checks, optimize for precision.
+   * Metrics: Recall, ROC-AUC, and Precision. By balancing recall and precision, the business can minimize financial loss while avoiding customer inconvenience associated with false positives. To catch more fraud, optimize for recall. To avoid customer friction with false-positive security checks, optimize for precision.
 
 ## 📊 Results and Findings
 
@@ -56,6 +56,7 @@ Fraudulent transactions result in significant financial losses and pose a reputa
 * Explore advanced algorithms such as neural networks for potential performance gains.
 
 ## ✅ Key Takeaways
+
 * Downsampling and upsampling are two strategies for dealing with extremely imbalanced data.
 * Using multiple preprocessing recipes with multiple algorithms allows data scientists to experiment and compare model performance. 
 * Determining which metric to optimize for is context-dependent. 
