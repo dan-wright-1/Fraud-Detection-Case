@@ -2,7 +2,7 @@
 
 ## 🔥 Introduction
 
-Welcome to my fraud detection project! In my intro data science course, we used R to clean data and build a machine learning model to predict a response variable. This particular model leverages historical transaction data to identify patterns and anomalies indicative of fraudulent activities.
+Welcome to my fraud detection project! In one of my data science courses, we used R to clean data and build a machine learning model to predict a response variable. This particular model leverages historical transaction data to identify patterns and anomalies indicative of fraudulent activities.
 
 ## 🚨 Problem Statement
 
