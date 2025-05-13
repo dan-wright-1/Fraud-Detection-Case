@@ -1,4 +1,4 @@
-# Fraud Detection Modeling Case
+# 🕵️‍♂️ Fraud Detection Modeling Case
 
 ## 🔥 Introduction
 
