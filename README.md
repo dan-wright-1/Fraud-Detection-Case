@@ -65,7 +65,7 @@ Fraudulent transactions result in significant financial losses and pose a reputa
 
 # Modeling Pipeline
 
-Here's how the sausage was made! 🌭
+(How the sausage was made! 🌭)
 
 ### 1. 🧪 Training/Testing Split
 
